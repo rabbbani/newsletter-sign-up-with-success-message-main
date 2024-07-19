@@ -1,0 +1,235 @@
+@font-face {
+    font-family: 'Roboto';
+    src:
+    local('Roboto Regular')
+     url(/assets/fonts/Roboto-Regular.ttf);
+    
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Roboto';
+    src:
+    local('Roboto Bold')
+     url(/assets/fonts/Roboto-Bold.ttf);
+    
+    font-weight:700;
+}
+
+:root{
+    --clr-neutral-800: hsl(234, 29%, 20%);
+    --clr-neutral-700: hsl(235, 18%, 26%);
+    --clr-neutral-600: hsl(231, 7%, 60%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+
+    --clr-accent-400: hsl(4, 100%, 67%);
+    --clr-accent-500:hsl(347, 100%, 66%) ;
+
+    --ff-base:Roboto, sans-serif;
+    --fw-regular:400;
+    --fw-bold:700;
+
+    --fs-400:1rem;
+    --fs-900:2.5rem;
+}
+
+body{
+    font-family: var(--ff-base);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-regular);
+    color: var(--clr-neutral-800);
+    display: grid;
+    place-items: center;
+    background: var(--clr-neutral-800);
+}
+
+input{
+    padding: 1rem;
+    border-radius: .5rem;
+    border: 1px solid var(--clr-neutral-600);
+
+    outline: 0;
+
+    &::placeholder{
+        font-weight: var(--fw-regular);
+        color: var(--clr-neutral-600);
+    }
+
+    &:not(:focus):invalid{
+        color: var(--clr-accent-400);
+        border: 1px solid var(--clr-accent-400);
+    }
+}
+
+input:focus{
+    border: 1px solid var(--clr-neutral-800);
+}
+
+.form-group{
+    display: grid;
+    gap: .5rem;
+    font-size: var(--fs-400);
+    font-weight: var(--fw-bold);
+
+    > .error{
+        text-align: end;
+        color: var(--clr-accent-400);
+        display: none;
+    }
+}
+/* .form-group:not(:focus):invalid > .error */
+.form-group:has(:not(:focus):invalid) > .error {
+    display: block; 
+}
+
+.form-group.with-error-field{
+    grid-template-columns: 1fr 1fr;
+    > input{
+        grid-column: 1/-1;
+    }
+}
+
+.button{
+    background: var(--clr-neutral-800);
+    border: 0;
+    color: var(--clr-neutral-100);
+    border-radius: .5rem;
+    padding: 1rem;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible{
+        background: 
+        linear-gradient(-90deg,var(--clr-accent-400),var(--clr-accent-500));
+        position: relative;
+        
+        
+
+        &::after{
+            position: absolute;
+            content: "";
+            inset: 0;
+            background: inherit;
+            border-radius: inherit;
+            z-index: -1;
+            translate: 0 15px;
+            filter: blur(10px);
+            opacity: .5 ;
+        }
+    }
+}
+
+
+.title{
+    font-size: var(--fs-900);
+    line-height: 1;
+    font-weight: var(--fw-bold);
+
+}
+.newsletter-cta{
+    background: var(--clr-neutral-100);
+    max-width: 850px;
+    
+
+    img{
+        margin-inline: auto
+    }
+
+    > .content{
+        padding: 1.5rem;
+        display: grid;
+        gap: 1rem;
+
+        .checkmark-list{
+            display: grid;
+            gap: .5rem;
+        }
+        .checkmark-list li{
+            display: grid;
+            grid-template-columns: 2rem auto;
+
+            &::before{
+                content: url(/assets/images/icon-list.svg);
+            }
+        }
+    }
+
+    form{
+        margin-block-start: 1.25rem;
+        display: grid;
+        gap: 1.5rem;
+        isolation: isolate;
+    }
+}
+
+
+
+
+
+.card{
+    background: var(--clr-neutral-100);
+    padding: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+    .title{
+        margin-block-start: 2rem;
+        display: grid;
+        gap: 1rem;
+
+        &::before{
+            content: url(/assets/images/icon-success.svg);
+        }
+    }
+
+    .button{
+        padding: 1rem;
+        margin-top: auto;
+    }
+}
+
+.hide{
+    display: none;
+}
+
+
+@media (min-width: 650px) {
+
+
+    .newsletter-cta{
+        display: grid;
+        grid-template-columns: 1fr .85fr;
+        padding: 2rem;
+        align-items: center;
+        border-radius: 2rem;
+
+        .content{
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+    }
+
+
+    .card{
+        max-width: 450px;
+        padding: 3rem;
+        height: auto;
+        gap: 1rem;
+        border-radius: 2rem;
+        .title{
+            margin: 0;
+            font-weight: var(--fw-bold);
+        }
+
+        p{
+            margin-bottom: 1rem;
+        }
+    }
+
+    .hide{
+        display: none;
+    }
+}
