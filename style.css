@@ -166,7 +166,7 @@ input:focus{
 
 
 .card{
-    background: var(--clr-neutral-100);
+    background: var(--clr-neutral-600);
     padding: 2rem;
     height: 100vh;
     display: flex;
